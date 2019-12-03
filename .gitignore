@@ -1,0 +1,16 @@
+/.env
+/docker-compose.yml
+.idea
+/.settings
+/.buildpath
+/.project
+/target
+/vendor
+/magento2
+/composer.lock
+/node_modules
+/dist
+.DS_Store
+/import/sql
+/import/dumps
+/import/images
