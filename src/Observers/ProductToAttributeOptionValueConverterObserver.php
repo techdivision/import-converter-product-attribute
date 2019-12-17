@@ -153,7 +153,7 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
         $this->prepareStoreViewCode();
 
         // load the store ID, use the admin store if NO store view code has been set
-        $storeId = $this->getRowStoreId(StoreViewCodes::ADMIN);
+        $storeId = $this->getStoreId(StoreViewCodes::ADMIN);
 
         // load the user defined EAV attributes by the found attribute set and the backend types
         $attributes = $this->getEavUserDefinedAttributes();
