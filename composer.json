@@ -3,11 +3,10 @@
     "description": "M2IF library providing the functionality to convert a CSV file with attribute option values from a CSV file with products",
     "license": "OSL-3.0",
     "require": {
-        "php": ">=5.6.0",
-        "techdivision/import": "15.x-dev as 15.0.0",
-        "techdivision/import-product": "19.x-dev as 19.0.0",
-        "techdivision/import-attribute": "17.x-dev as 17.0.0",
-        "techdivision/import-converter": "9.x-dev as 9.0.0"
+        "php": ">=7.1.0",
+        "techdivision/import-product": "19.*",
+        "techdivision/import-attribute": "17.*",
+        "techdivision/import-converter": "9.*"
     },
     "require-dev": {
         "doctrine/dbal": "2.5.*",
