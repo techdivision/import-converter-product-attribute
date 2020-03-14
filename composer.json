@@ -29,7 +29,13 @@
         "psr-4": {
             "TechDivision\\Import\\Converter\\Product\\Attribute\\": [
                 "src/",
-                "symfony/",
+                "symfony/"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TechDivision\\Import\\Converter\\Product\\Attribute\\": [
                 "tests/unit"
             ]
         }
