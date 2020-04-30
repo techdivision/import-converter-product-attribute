@@ -1,12 +1,13 @@
 {
     "name": "techdivision/import-converter-product-attribute",
-    "description": "M2IF library providing the functionality to convert a CSV file with attribute option values from a CSV file with products",
+    "description": "Pacemaker library providing the functionality to convert a CSV file with attribute option values from a CSV file with products",
     "license": "OSL-3.0",
     "require": {
         "php": ">=7.1.0",
-        "techdivision/import-product": "19.*",
-        "techdivision/import-attribute": "17.*",
-        "techdivision/import-converter": "9.*"
+        "techdivision/import": "16.x-dev as 15.2.1",
+        "techdivision/import-product": "20.x-dev as 19.0.6",
+        "techdivision/import-attribute": "18.x-dev as 17.0.3",
+        "techdivision/import-converter": "10.x-dev as 9.0.1"
     },
     "require-dev": {
         "doctrine/dbal": "2.5.*",
