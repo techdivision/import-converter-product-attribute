@@ -6,7 +6,7 @@
 
 ## Features
 
-* Switch to latest versions of techdivision/import-product, techdivision-import-attribute and techdivision/import-converter
+* Switch to latest versions of techdivision/import-product, techdivision/import-attribute and techdivision/import-converter
 
 # Version 1.0.1
 
