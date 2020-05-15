@@ -1,3 +1,13 @@
+# Version 4.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to techdivision/import-attribute 19.*
+
 # Version 3.0.0
 
 ## Bugfixes
