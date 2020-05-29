@@ -1,3 +1,13 @@
+# Version 5.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add #PAC-47: Add entity merger implementation to allow fine grained entity merging
+
 # Version 4.0.0
 
 ## Bugfixes
