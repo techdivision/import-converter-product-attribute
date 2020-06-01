@@ -1,3 +1,13 @@
+# Version 6.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to techdivision/import-product 22.*
+
 # Version 5.0.0
 
 ## Bugfixes
