@@ -1,3 +1,13 @@
+# Version 7.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to techdivision/import-product 23.*
+
 # Version 6.0.0
 
 ## Bugfixes

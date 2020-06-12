@@ -4,7 +4,7 @@
     "license": "OSL-3.0",
     "require": {
         "php": ">=7.1.0",
-        "techdivision/import-product": "22.*",
+        "techdivision/import-product": "23.*",
         "techdivision/import-attribute": "20.*",
         "techdivision/import-converter": "10.*"
     },
