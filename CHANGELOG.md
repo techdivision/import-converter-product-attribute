@@ -1,3 +1,13 @@
+# Version 8.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Switch to techdivision/import-product 24.*
+
 # Version 7.0.0
 
 ## Bugfixes
