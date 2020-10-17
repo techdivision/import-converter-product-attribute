@@ -5,7 +5,7 @@
     "require": {
         "php": ">=7.1.0",
         "techdivision/import-product": "24.*",
-        "techdivision/import-attribute": "20.*",
+        "techdivision/import-attribute": "21.*",
         "techdivision/import-converter": "10.*"
     },
     "require-dev": {
