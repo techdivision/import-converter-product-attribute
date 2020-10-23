@@ -103,6 +103,14 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
     }
 
     /**
+     * @return string
+     */
+    public function getEmptyAttributeValueConstant()
+    {
+        return $this->getSubject()->getConfiguration()->getConfiguration()->getEmptyAttributeValueConstant();
+    }
+
+    /**
      * Remove all the empty values from the row and return the cleared row.
      *
      * @return array The cleared row
@@ -129,8 +137,16 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
             }
         }
 
+        $emptyValueDefinition = $this->getEmptyAttributeValueConstant();
+        // load the header keys
+        $headers = in_array($emptyValueDefinition, $this->row, true) ? array_flip($this->getHeaders()) : [];
         // remove all the empty values from the row, expected the columns has to be cleaned-up
         foreach ($this->row as $key => $value) {
+            // query whether or not to cleanup complete attribute
+            if ($value === $emptyValueDefinition) {
+                $this->cleanUpEmptyColumnKeys[$headers[$key]] = $key;
+                $this->row[$key] = '';
+            }
             // query whether or not the value is empty AND the column has NOT to be cleaned-up
             if (($value === null || $value === '') && in_array($key, $this->cleanUpEmptyColumnKeys) === false) {
                 unset($this->row[$key]);
@@ -171,6 +187,8 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
         $entityType = $this->loadEavEntityTypeByEntityTypeCode($this->getSubject()->getEntityTypeCode());
         $entityTypeId = $entityType[MemberNames::ENTITY_TYPE_ID];
 
+        $emptyValueDefinition = $this->getEmptyAttributeValueConstant();
+
         // iterate over the attributes and append them to the row
         foreach ($row as $key => $attributeValue) {
             // query whether or not attribute with the found code exists
@@ -210,9 +228,15 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
             // we only support user defined EAV attributes of type select and multiselect
             if (in_array($attribute[MemberNames::FRONTEND_INPUT], array(FrontendInputTypes::SELECT, FrontendInputTypes::MULTISELECT))) {
                 // explode the values if we've a multiselect
-                $values = $this->explode($attributeValue, $this->getMultipleValueDelimiter());
+                $valuesExploded = $this->explode($attributeValue, $this->getMultipleValueDelimiter());
+                // check if valueExploded an array to fix crash on next step "foreach"
+                $values = is_array($valuesExploded) ? $valuesExploded : [];
                 // iterate over the values
                 foreach ($values as $value) {
+                    // query whether the value corresponds to the Empty Value definition to skip
+                    if ($value === $emptyValueDefinition) {
+                        continue;
+                    }
                     // query whether or not the attribute value already exists
                     if ($this->loadAttributeOptionValueByEntityTypeIdAndAttributeCodeAndStoreIdAndValue($entityTypeId, $attributeCode, $storeId, $value)) {
                         continue;
