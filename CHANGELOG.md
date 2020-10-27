@@ -1,3 +1,13 @@
+# Version 10.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add #PAC-57: Deleting dedicated attribute values via import by setting a configurable value
+
 # Version 9.0.0
 
 ## Bugfixes
