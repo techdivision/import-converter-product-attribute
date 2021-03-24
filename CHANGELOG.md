@@ -1,3 +1,13 @@
+# Version 9.0.1
+
+## Bugfixes
+
+* Add #PAC-233: CSV file with missing option values contains duplicates
+
+## Features
+
+* None
+
 # Version 9.0.0
 
 ## Bugfixes

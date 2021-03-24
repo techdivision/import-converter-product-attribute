@@ -78,8 +78,8 @@ class ReduceAttributeOptionValueListener extends AbstractListener
                 // iterate over the categories
                 foreach ($arts as $attributeOptionValues) {
                     foreach ($attributeOptionValues as $attributeOptionValue) {
-                        // load the attribute code
-                        $attributeCode = $attributeOptionValue[ColumnKeys::ATTRIBUTE_CODE];
+                        // Generate unique key for artefact to avoid duplicates
+                        $attributeCode = md5(\json_encode($attributeOptionValue));
                         // query whether or not the attribute code has already been processed
                         if (isset($toExport[$attributeCode])) {
                             continue;
