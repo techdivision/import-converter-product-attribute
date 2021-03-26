@@ -2,7 +2,7 @@
 
 ## Bugfixes
 
-* None
+* Add #PAC-233: CSV file with missing option values contains duplicates
 
 ## Features
 
