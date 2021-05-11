@@ -1,3 +1,13 @@
+# Version 9.0.2
+
+## Bugfixes
+
+* none
+
+## Features
+
+* Refactoring duplicate code and rename ReduceAttributeOptionValueListener to ReduceProductAttributeOptionValueListener
+
 # Version 9.0.1
 
 ## Bugfixes
