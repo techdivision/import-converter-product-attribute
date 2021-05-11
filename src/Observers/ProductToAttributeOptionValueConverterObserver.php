@@ -363,7 +363,6 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
      * @param array $artefacts The product type artefacts
      *
      * @return void
-     * @uses \TechDivision\Import\Product\Media\Subjects\MediaSubject::getLastEntityId()
      */
     protected function addArtefacts(array $artefacts)
     {
