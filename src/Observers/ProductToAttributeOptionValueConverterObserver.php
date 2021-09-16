@@ -3,17 +3,11 @@
 /**
  * TechDivision\Import\Converter\Product\Attribute\Observers\ProductToAttributeOptionValueConverterObserver
  *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- *
- * PHP version 5
+ * PHP version 7
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2019 TechDivision GmbH <info@techdivision.com>
- * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/techdivision/import-converter-product-attribute
  * @link      http://www.techdivision.com
  */
@@ -30,18 +24,20 @@ use TechDivision\Import\Services\ImportProcessorInterface;
 use TechDivision\Import\Converter\Observers\AbstractConverterObserver;
 use TechDivision\Import\Attribute\Callbacks\SwatchTypeLoaderInterface;
 use TechDivision\Import\Attribute\Services\AttributeBunchProcessorInterface;
+use TechDivision\Import\Observers\CleanUpEmptyColumnsTrait;
 
 /**
  * Observer that extracts the missing attribute option values from a product CSV.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2019 TechDivision GmbH <info@techdivision.com>
- * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ * @license   https://opensource.org/licenses/MIT
  * @link      https://github.com/techdivision/import-converter-product-attribute
  * @link      http://www.techdivision.com
  */
 class ProductToAttributeOptionValueConverterObserver extends AbstractConverterObserver
 {
+    use CleanUpEmptyColumnsTrait;
 
     /**
      * The artefact type.
@@ -72,13 +68,6 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
     protected $swatchTypeLoader;
 
     /**
-     * The array with the column keys that has to be cleaned up when their values are empty.
-     *
-     * @var array
-     */
-    protected $cleanUpEmptyColumnKeys;
-
-    /**
      * Initialize the observer with the passed product bunch processor instance.
      *
      * @param \TechDivision\Import\Services\ImportProcessorInterface                   $importProcessor         The product bunch processor instance
@@ -100,61 +89,6 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
 
         // pass the state detector to the parent method
         parent::__construct($stateDetector);
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmptyAttributeValueConstant()
-    {
-        return $this->getSubject()->getConfiguration()->getConfiguration()->getEmptyAttributeValueConstant();
-    }
-
-    /**
-     * Remove all the empty values from the row and return the cleared row.
-     *
-     * @return array The cleared row
-     */
-    protected function clearRow()
-    {
-
-        // query whether or not the column keys has been initialized
-        if ($this->cleanUpEmptyColumnKeys === null) {
-            // initialize the array with the column keys that has to be cleaned-up
-            $this->cleanUpEmptyColumnKeys = array();
-
-            // query whether or not column names that has to be cleaned up have been configured
-            if ($this->getSubject()->getConfiguration()->hasParam(ConfigurationKeys::CLEAN_UP_EMPTY_COLUMNS)) {
-                // if yes, load the column names
-                $cleanUpEmptyColumns = $this->getSubject()->getCleanUpColumns();
-
-                // translate the column names into column keys
-                foreach ($cleanUpEmptyColumns as $cleanUpEmptyColumn) {
-                    if ($this->hasHeader($cleanUpEmptyColumn)) {
-                        $this->cleanUpEmptyColumnKeys[] = $this->getHeader($cleanUpEmptyColumn);
-                    }
-                }
-            }
-        }
-
-        $emptyValueDefinition = $this->getEmptyAttributeValueConstant();
-        // load the header keys
-        $headers = in_array($emptyValueDefinition, $this->row, true) ? array_flip($this->getHeaders()) : [];
-        // remove all the empty values from the row, expected the columns has to be cleaned-up
-        foreach ($this->row as $key => $value) {
-            // query whether or not to cleanup complete attribute
-            if ($value === $emptyValueDefinition) {
-                $this->cleanUpEmptyColumnKeys[$headers[$key]] = $key;
-                $this->row[$key] = '';
-            }
-            // query whether or not the value is empty AND the column has NOT to be cleaned-up
-            if (($value === null || $value === '') && in_array($key, $this->cleanUpEmptyColumnKeys) === false) {
-                unset($this->row[$key]);
-            }
-        }
-
-        // finally return the clean row
-        return $this->row;
     }
 
     /**
@@ -363,6 +297,7 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
      * @param array $artefacts The product type artefacts
      *
      * @return void
+     * @uses \TechDivision\Import\Product\Media\Subjects\MediaSubject::getLastEntityId()
      */
     protected function addArtefacts(array $artefacts)
     {

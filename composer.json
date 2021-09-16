@@ -1,9 +1,9 @@
 {
     "name": "techdivision/import-converter-product-attribute",
     "description": "Pacemaker library providing the functionality to convert a CSV file with attribute option values from a CSV file with products",
-    "license": "OSL-3.0",
+    "license": "MIT",
     "require": {
-        "php": ">=7.1.0",
+        "php": ">=7.2.0",
         "techdivision/import-product": "dev-master",
         "techdivision/import-attribute": "dev-master",
         "techdivision/import-converter": "dev-master"
