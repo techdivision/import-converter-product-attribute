@@ -5,8 +5,8 @@
     "require": {
         "php": ">=7.3.0",
         "techdivision/import-product": "dev-master",
-        "techdivision/import-attribute": "dev-master",
-        "techdivision/import-converter": "dev-master"
+        "techdivision/import-attribute": "^22.0.0",
+        "techdivision/import-converter": "^11.0.0"
     },
     "require-dev": {
         "doctrine/dbal": "2.5.*",
