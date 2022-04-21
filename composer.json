@@ -4,7 +4,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.3.0",
-        "techdivision/import-product": "dev-master",
+        "techdivision/import-product": "^25.0.0",
         "techdivision/import-attribute": "^22.0.0",
         "techdivision/import-converter": "^11.0.0"
     },
