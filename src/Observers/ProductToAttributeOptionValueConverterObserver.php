@@ -79,7 +79,7 @@ class ProductToAttributeOptionValueConverterObserver extends AbstractConverterOb
         ImportProcessorInterface $importProcessor,
         AttributeBunchProcessorInterface $attributeBunchProcessor,
         SwatchTypeLoaderInterface $swatchTypeLoader,
-        StateDetectorInterface $stateDetector = null
+        ?StateDetectorInterface $stateDetector = null
     ) {
 
         // initialize the swatch type loader and the processor instances

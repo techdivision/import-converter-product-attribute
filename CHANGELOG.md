@@ -1,3 +1,11 @@
+# Version 11.1.0
+
+## Features
+
+### PHP 8.4 Compatibility
+
+* Add PHP 8.4 support
+
 # Version 11.0.0
 
 ## Features
